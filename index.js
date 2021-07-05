@@ -17,7 +17,7 @@ app.use('/account', accountRouter);
 
 app.get('/', (req, res) => {
     res.send("Welcome to BCV API");
-})
+});
 
 const PORT = process.env.PORT || 5000;
 
