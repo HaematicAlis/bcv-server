@@ -5,6 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import accountRouter from './routes/account.js';
+import comicRouter from './routes/comic.js';
 
 const app = express();
 dotenv.config();
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 app.use('/account', accountRouter);
+app.use('/comic', comicRouter);
 
 app.get('/', (req, res) => {
     res.send("Welcome to BCV API");
