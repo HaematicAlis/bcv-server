@@ -27,15 +27,13 @@ export const addImage = async (req, res) => {
     const id = req.body.id;
     const imageInfo = req.body.image;
     const newImage = { name: imageInfo.name, size: imageInfo.size, fileType: imageInfo.fileType, base64: imageInfo.base64 };
-
+    
     try {
-        const comic = await Comic.findById(id);
+        var comic = await Comic.findById(id);
         comic.cover = newImage;
         await comic.save();
-        
-        res.status(201).json(newImage);
+        res.status(201).json(comic);
     } catch (error) {
-        console.log(error);
         res.status(409).json({ message: error });
     }
 }
