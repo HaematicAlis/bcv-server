@@ -22,3 +22,22 @@ export const addComic = async (req, res) => {
         res.status(409).json({ message: error });
     }
 }
+
+export const addImage = async (req, res) => {
+    const id = req.body.id;
+    const imageInfo = req.body.image;
+    const newImage = new Image({ name: imageInfo.name, size: imageInfo.size, type: imageInfo.type, base64: imageInfo.base64 });
+
+    try {
+        await newImage.save();
+
+        const comic = await Comic.findOneById(id);
+        const comicImages = comic.images;
+        comic.images = [...comicImages, newImage];
+        await comic.save();
+        
+        res.status(201).json(newImage);
+    } catch (error) {
+        res.status(409).json({ message: error });
+    }
+}

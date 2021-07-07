@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+import Image from './image.js';
+
 const Schema = mongoose.Schema;
 
 const comicSchema = mongoose.Schema({
@@ -10,20 +12,7 @@ const comicSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
     },
     images: {
-        type: [{
-            name: {
-                type: String,
-            },
-            size: {
-                type: String,
-            },
-            type: {
-                type: String,
-            },
-            base64: {
-                type: String,
-            },
-        }],
+        type: [Image.Schema],
         default: [],
     },
 });
