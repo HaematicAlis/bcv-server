@@ -13,7 +13,7 @@ export const getComics = async (req, res) => {
 
 export const addComic = async (req, res) => {
     const comicInfo = req.body;
-    const newComic = new Comic({ name: comicInfo.name, images: comicInfo.images, owner: comicInfo.owner });
+    const newComic = new Comic({ name: comicInfo.name, owner: comicInfo.owner });
 
     try {
         await newComic.save();
@@ -26,18 +26,16 @@ export const addComic = async (req, res) => {
 export const addImage = async (req, res) => {
     const id = req.body.id;
     const imageInfo = req.body.image;
-    const newImage = new Image({ name: imageInfo.name, size: imageInfo.size, type: imageInfo.type, base64: imageInfo.base64 });
+    const newImage = { name: imageInfo.name, size: imageInfo.size, fileType: imageInfo.fileType, base64: imageInfo.base64 };
 
     try {
-        await newImage.save();
-
-        const comic = await Comic.findOneById(id);
-        const comicImages = comic.images;
-        comic.images = [...comicImages, newImage];
+        const comic = await Comic.findById(id);
+        comic.cover = newImage;
         await comic.save();
         
         res.status(201).json(newImage);
     } catch (error) {
+        console.log(error);
         res.status(409).json({ message: error });
     }
 }

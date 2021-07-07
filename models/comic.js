@@ -1,6 +1,19 @@
 import mongoose from 'mongoose';
 
-import Image from './image.js';
+const imageSchema = mongoose.Schema({
+    name: {
+        type: String,
+    },
+    size: {
+        type: String,
+    },
+    fileType: {
+        type: String,
+    },
+    base64: {
+        type: String,
+    },
+});
 
 const Schema = mongoose.Schema;
 
@@ -11,9 +24,9 @@ const comicSchema = mongoose.Schema({
     owner: {
         type: Schema.Types.ObjectId,
     },
-    images: {
-        type: [Image.Schema],
-        default: [],
+    cover: {
+        type: imageSchema,
+        default: {},
     },
 });
 
