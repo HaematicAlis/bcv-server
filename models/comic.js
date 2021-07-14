@@ -10,7 +10,7 @@ const imageSchema = mongoose.Schema({
     fileType: {
         type: String,
     },
-    base64: {
+    src: {
         type: String,
     },
 });
@@ -28,6 +28,9 @@ const comicSchema = mongoose.Schema({
         type: imageSchema,
         default: {},
     },
+    album: {
+        type: String,
+    }
 });
 
 const Comic = mongoose.model('Comic', comicSchema);

@@ -13,7 +13,7 @@ export const getComics = async (req, res) => {
 
 export const addComic = async (req, res) => {
     const comicInfo = req.body;
-    const newComic = new Comic({ name: comicInfo.name, owner: comicInfo.owner });
+    const newComic = new Comic({ name: comicInfo.name, owner: comicInfo.owner, link: comicInfo.album });
 
     try {
         await newComic.save();
@@ -26,7 +26,7 @@ export const addComic = async (req, res) => {
 export const addImage = async (req, res) => {
     const id = req.body.id;
     const imageInfo = req.body.image;
-    const newImage = { name: imageInfo.name, size: imageInfo.size, fileType: imageInfo.fileType, base64: imageInfo.base64 };
+    const newImage = { name: imageInfo.name, size: imageInfo.size, fileType: imageInfo.fileType, src: imageInfo.src };
     
     try {
         var comic = await Comic.findById(id);
