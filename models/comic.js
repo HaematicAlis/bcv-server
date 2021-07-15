@@ -24,15 +24,11 @@ const comicSchema = mongoose.Schema({
     owner: {
         type: Schema.Types.ObjectId,
     },
-    cover: {
-        type: imageSchema,
-        default: {},
-    },
     album: {
         type: String,
     },
     images: {
-        type: [String],
+        type: [imageSchema],
     },
 });
 
