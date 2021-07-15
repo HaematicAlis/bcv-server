@@ -30,7 +30,10 @@ const comicSchema = mongoose.Schema({
     },
     album: {
         type: String,
-    }
+    },
+    images: {
+        type: [String],
+    },
 });
 
 const Comic = mongoose.model('Comic', comicSchema);

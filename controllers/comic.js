@@ -15,7 +15,7 @@ export const getComics = async (req, res) => {
 
 export const addComic = async (req, res) => {
     const comicInfo = req.body;
-    const newComic = new Comic({ name: comicInfo.name, owner: comicInfo.owner, album: comicInfo.album });
+    const newComic = new Comic({ name: comicInfo.name, owner: comicInfo.owner, album: comicInfo.album, images: comicInfo.images });
 
     try {
         await newComic.save();
