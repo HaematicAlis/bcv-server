@@ -34,18 +34,3 @@ export const deleteComic = async (req, res) => {
         res.status(404).json({ message: error });
     }
 }
-
-export const addImage = async (req, res) => {
-    const id = req.body.id;
-    const imageInfo = req.body.image;
-    const newImage = { name: imageInfo.name, size: imageInfo.size, fileType: imageInfo.fileType, src: imageInfo.src };
-    
-    try {
-        var comic = await Comic.findById(id);
-        comic.cover = newImage;
-        await comic.save();
-        res.status(201).json(comic);
-    } catch (error) {
-        res.status(409).json({ message: error });
-    }
-}
