@@ -2,6 +2,8 @@ import Comic from '../models/comic.js';
 
 export const getComics = async (req, res) => {
     const id = req.body.id;
+    console.log(req.body);
+    console.log(id);
 
     try {
         const comics = await Comic.find({ owner: id });
@@ -25,9 +27,8 @@ export const addComic = async (req, res) => {
 
 export const deleteComic = async (req, res) => {
     const id = req.body.id;
-
     try {
-        await Comic.findByIdAndDelete(id);
+        const comic = await Comic.findByIdAndDelete(id);
         res.status(200).json({ message: 'success' });
     } catch (error) {
         res.status(404).json({ message: error });
