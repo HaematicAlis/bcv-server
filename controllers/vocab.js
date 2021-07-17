@@ -2,6 +2,18 @@ import Vocab from '../models/vocab.js';
 
 export const getVocab = async (req, res) => {
     const id = req.body.id;
+    const page = req.body.page;
+
+    try {
+        var vocab = await Vocab.find({ comic: id, page: page });
+        res.status(200).json(vocab);
+    } catch (error) {
+        res.status(404).json({ message: error });
+    }
+}
+
+export const getAllVocab = async (req, res) => {
+    const id = req.body.id;
 
     try {
         var vocab = await Vocab.find({ comic: id });
