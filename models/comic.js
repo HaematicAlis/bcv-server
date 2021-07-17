@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+const Schema = mongoose.Schema;
+
 const imageSchema = mongoose.Schema({
     name: {
         type: String,
@@ -14,8 +16,6 @@ const imageSchema = mongoose.Schema({
         type: String,
     },
 });
-
-const Schema = mongoose.Schema;
 
 const comicSchema = mongoose.Schema({
     name: {
@@ -33,6 +33,7 @@ const comicSchema = mongoose.Schema({
     },
     images: {
         type: [imageSchema],
+        default: [],
     },
 });
 

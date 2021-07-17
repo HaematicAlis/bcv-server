@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 
 import accountRouter from './routes/account.js';
 import comicRouter from './routes/comic.js';
+import vocabRouter from './routes/vocab.js';
 
 const app = express();
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(cors());
 
 app.use('/account', accountRouter);
 app.use('/comic', comicRouter);
+app.use('/vocab', vocabRouter);
 
 app.get('/', (req, res) => {
     res.send("Welcome to BCV API");

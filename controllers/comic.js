@@ -26,8 +26,9 @@ export const addComic = async (req, res) => {
 
 export const deleteComic = async (req, res) => {
     const id = req.body.id;
+    
     try {
-        const comic = await Comic.findByIdAndDelete(id);
+        await Comic.findByIdAndDelete(id);
         res.status(200).json({ message: 'success' });
     } catch (error) {
         res.status(404).json({ message: error });
