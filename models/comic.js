@@ -24,6 +24,10 @@ const comicSchema = mongoose.Schema({
     owner: {
         type: Schema.Types.ObjectId,
     },
+    dateCreated: {
+        type: Date,
+        default: Date.now,
+    },
     album: {
         type: String,
     },

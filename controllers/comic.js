@@ -2,11 +2,19 @@ import Comic from '../models/comic.js';
 
 export const getComics = async (req, res) => {
     const id = req.body.id;
-    console.log(req.body);
-    console.log(id);
+    const sort = req.body.sort;
 
     try {
-        const comics = await Comic.find({ owner: id });
+        var comics = await Comic.find({ owner: id });
+        switch (sort) {
+            case 'alphabetical':
+                comics.sort((a, b) => a.name.localeCompare(b.name));
+                break;
+            case 'revAlphabetical':
+                comics.sort((a, b) => b.name.localeCompare(a.name));
+            default:
+                break;
+        }
         res.status(200).json(comics);
     } catch (error) {
         res.status(404).json({ message: error });
