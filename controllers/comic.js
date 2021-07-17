@@ -12,6 +12,13 @@ export const getComics = async (req, res) => {
                 break;
             case 'revAlphabetical':
                 comics.sort((a, b) => b.name.localeCompare(a.name));
+                break;
+            case 'date':
+                comics.sort((a, b) => a.dateCreated.localeCompare(b.dateCreated));
+                break;
+            case 'revDate':
+                comics.sort((a, b) => b.dateCreated.localeCompare(a.dateCreated));
+                break;
             default:
                 break;
         }
