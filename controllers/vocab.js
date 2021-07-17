@@ -39,7 +39,7 @@ export const deleteVocab = async (req, res) => {
     const id = req.body.id;
     
     try {
-        await Comic.findByIdAndDelete(id);
+        await Vocab.findByIdAndDelete(id);
         res.status(200).json({ message: 'success' });
     } catch (error) {
         res.status(404).json({ message: error });
