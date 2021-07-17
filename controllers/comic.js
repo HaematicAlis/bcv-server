@@ -5,23 +5,7 @@ export const getComics = async (req, res) => {
     const sort = req.body.sort;
 
     try {
-        var comics = await Comic.find({ owner: id });
-        switch (sort) {
-            case 'alphabetical':
-                comics.sort((a, b) => a.name.localeCompare(b.name));
-                break;
-            case 'revAlphabetical':
-                comics.sort((a, b) => b.name.localeCompare(a.name));
-                break;
-            case 'date':
-                comics.sort((a, b) => a.dateCreated.localeCompare(b.dateCreated));
-                break;
-            case 'revDate':
-                comics.sort((a, b) => b.dateCreated.localeCompare(a.dateCreated));
-                break;
-            default:
-                break;
-        }
+        var comics = await Comic.find({ owner: id }).sort(sort);
         res.status(200).json(comics);
     } catch (error) {
         res.status(404).json({ message: error });
