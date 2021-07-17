@@ -15,6 +15,12 @@ const vocabSchema = mongoose.Schema({
     gloss: {
         type: String,
     },
+    reading: {
+        type: String,
+    },
+    notes: {
+        type: String,
+    },
 });
 
 const Vocab = mongoose.model('Vocab', vocabSchema);

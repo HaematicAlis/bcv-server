@@ -24,8 +24,7 @@ export const getAllVocab = async (req, res) => {
 }
 
 export const addVocab = async (req, res) => {
-    const vocabInfo = req.body;
-    const newVocab = new Vocab({ comic: vocabInfo.comic, page: vocabInfo.page, term: vocabInfo.term, gloss: vocabInfo.gloss });
+    const newVocab = new Vocab(req.body);
 
     try {
         await newVocab.save();
