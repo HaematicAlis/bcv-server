@@ -15,6 +15,10 @@ const imageSchema = mongoose.Schema({
     src: {
         type: String,
     },
+    done: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 const comicSchema = mongoose.Schema({
@@ -27,6 +31,10 @@ const comicSchema = mongoose.Schema({
     dateCreated: {
         type: Date,
         default: Date.now,
+    },
+    done: {
+        type: Boolean,
+        default: false,
     },
     album: {
         type: String,

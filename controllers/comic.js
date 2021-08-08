@@ -34,3 +34,17 @@ export const deleteComic = async (req, res) => {
         res.status(404).json({ message: error });
     }
 }
+
+export const setDone = async (req, res) => {
+    const id = req.body.id;
+    const done = req.body.done;
+
+    try {
+        const comic = await Comic.findById(id);
+        comic.done = done;
+        await comic.save();
+        res.status(201).json(comic);
+    } catch (error) {
+        res.status(409).json({ message: error });
+    }
+}
