@@ -62,16 +62,9 @@ export const setDone = async (req, res) => {
     const done = req.body.done;
 
     try {
-        console.log('----------------------');
-        console.log('id: ' + id + '   index: ' + index + '   done: ' + done);
-        console.log('finding comic...');
         const comic = await Comic.findById(id);
-        console.log('found the comic.');
-        console.log('getting image at index ' + index + ' and setting done to ' + done);
         comic.images[index].done = done;
-        console.log('saving comic...');
         await comic.save();
-        console.log('success');
         res.status(201).json(comic);
     } catch (error) {
         res.status(409).json({ message: error });
